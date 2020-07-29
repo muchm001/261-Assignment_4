@@ -128,21 +128,63 @@ class BST:
 
     def add(self, value: object) -> None:
         """
-        TODO: Write this implementation
+        Adds new value to the tree, maintaining BST property. Duplicates must be
+        allowed and placed in the right subtree
         """
-        pass
+        if self.root is None:
+            self.root = TreeNode(value)
+        else:
+            if value < self.root.value and self.root.left is None:
+                self.root.left = TreeNode(value)
+            elif value > self.root.value and self.root.right is None:
+                self.root.right = TreeNode(value)
+            else:
+                P = None
+                N = self.root
+                while N is not None:
+                    P = N
+                    if value < N.value:
+                        N = N.left
+                    else:
+                        N = N.right
+                if value < P.value:
+                    P.left = TreeNode(value)
+                else:
+                    P.right = TreeNode(value)
+
 
     def contains(self, value: object) -> bool:
         """
         TODO: Write this implementation
         """
-        return True
+        if self.root is None:
+            return False
+        else:
+            if value < self.root.value and self.root.left is None:
+                return False
+            elif value > self.root.value and self.root.right is None:
+                return False
+            else:
+
+                N = self.root
+                while N is not None:
+
+                    if N.value == value:
+                        return True
+                    elif value < N.value:
+                        N = N.left
+                    else:
+                        N = N.right
+                return False
 
     def get_first(self) -> object:
         """
         TODO: Write this implementation
         """
-        return None
+        if self.root is None:
+            return None
+        else:
+            return self.root
 
     def remove_first(self) -> bool:
         """
