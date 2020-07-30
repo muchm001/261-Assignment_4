@@ -190,13 +190,63 @@ class BST:
         """
         TODO: Write this implementation
         """
-        return True
+        if self.root is None:
+            return False
+        else:
+            N, PN, l_r = self.find(self.root.value)
+            if self.root.right is None and self.root.left is None:
+                self.root = None
+                return True
+            else:
+                if N.right is None:
+                    self.root = N.left
+                    return True
+                else:
+                    S, PS = self.in_order_sucessor(N)
+                    S.left = N.left
+                    if S is not N.right:
+                        PS.left = S.right
+                        S.right = N.right
+                    self.root = S
+                    return True
 
     def remove(self, value) -> bool:
         """
         TODO: Write this implementation
         """
-        return True
+        N, PN, l_r = self.find(value)
+        if N is None:
+            return False
+        else:
+            if N.left is None and N.right is None:
+                if PN.left == N:
+                    PN.left = None
+                    return True
+                else:
+                    PN.right = None
+                    return True
+            elif N.left is None or N.right is None:
+                if N.left is None:
+                    PN.left = N.right
+                    return True
+                else:
+                    PN.right = N.left
+                    return True
+            else:
+                S, PS = self.in_order_sucessor(N)
+                S.left = N.left
+                if S is not N.right:
+                    PS.left = S.right
+                    S.right = N.right
+                if l_r == "l":
+                    PN.left = S
+                else:
+                    PN.right = S
+                return True
+
+
+
+
 
     def pre_order_traversal(self) -> Queue:
         """
@@ -264,106 +314,142 @@ class BST:
         """
         return 0
 
+    def find(self, value) -> object:
+        """
+        Find the first node with the value supplied
+        """
+        N = self.root
+        PN = None
+        l_r = None
+        while N is not None:
+            if N.value == value:
+                return N,PN,l_r
+            elif N.value > value:
+                PN = N
+                N = N.left
+                l_r = "l"
+            else:
+                PN = N
+                N = N.right
+                l_r = "r"
+        if N is None:
+            return None,None,None
+        else:
+            return N,PN,l_r
+
+    def in_order_sucessor(self, N) -> object:
+        """
+        Find a nodes in order successor and return that value
+        """
+        if N.right.left is None:
+            return N.right, None
+        else:
+            N = N.right
+            while N.left is not None:
+                PS = N
+                N = N.left
+            return N, PS
+
 
 
 # BASIC TESTING - PDF EXAMPLES
 
 if __name__ == '__main__':
     """ add() example #1 """
-    print("\nPDF - method add() example 1")
-    print("----------------------------")
-    tree = BST()
-    print(tree)
-    tree.add(10)
-    tree.add(15)
-    tree.add(5)
-    print(tree)
-    tree.add(15)
-    tree.add(15)
-    print(tree)
-    tree.add(5)
-    print(tree)
+    # print("\nPDF - method add() example 1")
+    # print("----------------------------")
+    # tree = BST()
+    # print(tree)
+    # tree.add(10)
+    # tree.add(15)
+    # tree.add(5)
+    # print(tree)
+    # tree.add(15)
+    # tree.add(15)
+    # print(tree)
+    # tree.add(5)
+    # print(tree)
 
     """ add() example 2 """
-    print("\nPDF - method add() example 2")
-    print("----------------------------")
-    tree = BST()
-    tree.add(10)
-    tree.add(10)
-    print(tree)
-    tree.add(-1)
-    print(tree)
-    tree.add(5)
-    print(tree)
-    tree.add(-1)
-    print(tree)
+    # print("\nPDF - method add() example 2")
+    # print("----------------------------")
+    # tree = BST()
+    # tree.add(10)
+    # tree.add(10)
+    # print(tree)
+    # tree.add(-1)
+    # print(tree)
+    # tree.add(5)
+    # print(tree)
+    # tree.add(-1)
+    # print(tree)
 
     """ contains() example 1 """
-    print("\nPDF - method contains() example 1")
-    print("---------------------------------")
-    tree = BST([10, 5, 15])
-    print(tree.contains(15))
-    print(tree.contains(-10))
-    print(tree.contains(15))
+    # print("\nPDF - method contains() example 1")
+    # print("---------------------------------")
+    # tree = BST([10, 5, 15])
+    # print(tree.contains(15))
+    # print(tree.contains(-10))
+    # print(tree.contains(15))
 
     """ contains() example 2 """
-    print("\nPDF - method contains() example 2")
-    print("---------------------------------")
-    tree = BST()
-    print(tree.contains(0))
+    # print("\nPDF - method contains() example 2")
+    # print("---------------------------------")
+    # tree = BST()
+    # print(tree.contains(0))
 
     """ get_first() example 1 """
-    print("\nPDF - method get_first() example 1")
-    print("----------------------------------")
-    tree = BST()
-    print(tree.get_first())
-    tree.add(10)
-    tree.add(15)
-    tree.add(5)
-    print(tree.get_first())
-    print(tree)
+    # print("\nPDF - method get_first() example 1")
+    # print("----------------------------------")
+    # tree = BST()
+    # print(tree.get_first())
+    # tree.add(10)
+    # tree.add(15)
+    # tree.add(5)
+    # print(tree.get_first())
+    # print(tree)
 
     """ remove() example 1 """
-    print("\nPDF - method remove() example 1")
-    print("-------------------------------")
-    tree = BST([10, 5, 15])
-    print(tree.remove(7))
-    print(tree.remove(15))
-    print(tree.remove(15))
+    # print("\nPDF - method remove() example 1")
+    # print("-------------------------------")
+    # tree = BST([10, 5, 15])
+    # print(tree.remove(7))
+    # print(tree.remove(15))
+    # print(tree.remove(15))
 
     """ remove() example 2 """
-    print("\nPDF - method remove() example 2")
-    print("-------------------------------")
-    tree = BST([10, 20, 5, 15, 17, 7, 12])
-    print(tree.remove(20))
-    print(tree)
+    # print("\nPDF - method remove() example 2")
+    # print("-------------------------------")
+    # tree = BST([10, 20, 5, 15, 17, 7, 12])
+    # print(tree.remove(20))
+    # print(tree)
 
     """ remove() example 3 """
-    print("\nPDF - method remove() example 3")
-    print("-------------------------------")
-    tree = BST([10, 5, 20, 18, 12, 7, 27, 22, 18, 24, 22, 30])
-    print(tree.remove(20))
-    print(tree)
-    # comment out the following lines
-    # if you have not yet implemented traversal methods
-    print(tree.pre_order_traversal())
-    print(tree.in_order_traversal())
-    print(tree.post_order_traversal())
-    print(tree.by_level_traversal())
+    # print("\nPDF - method remove() example 3")
+    # print("-------------------------------")
+    # tree = BST([10, 5, 20, 18, 12, 7, 27, 22, 18, 24, 22, 30])
+    # print(tree.remove(20))
+    # print(tree)
+    # # comment out the following lines
+    # # if you have not yet implemented traversal methods
+    # print(tree.pre_order_traversal())
+    # print(tree.in_order_traversal())
+    # print(tree.post_order_traversal())
+    # print(tree.by_level_traversal())
 
     """ remove_first() example 1 """
-    print("\nPDF - method remove_first() example 1")
-    print("-------------------------------------")
-    tree = BST([10, 15, 5])
-    print(tree.remove_first())
-    print(tree)
+    # print("\nPDF - method remove_first() example 1")
+    # print("-------------------------------------")
+    # tree = BST([10, 15, 5])
+    # print(tree.remove_first())
+    # print(tree)
 
     """ remove_first() example 2 """
-    print("\nPDF - method remove_first() example 2")
-    print("-------------------------------------")
-    tree = BST([10, 20, 5, 15, 17, 7])
-    print(tree.remove_first())
-    print(tree)
+    # print("\nPDF - method remove_first() example 2")
+    # print("-------------------------------------")
+    # tree = BST([10, 20, 5, 15, 17, 7])
+    # print(tree.remove_first())
+    # print(tree)
 
     """ remove_first() example 3 """
     print("\nPDF - method remove_first() example 3")
