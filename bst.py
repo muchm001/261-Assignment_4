@@ -1,6 +1,6 @@
 # Course: CS261 - Data Structures
-# Student Name:
-# Assignment:
+# Student Name: Michael Uchmanowicz
+# Assignment: A4 P1
 # Description:
 
 
@@ -12,6 +12,7 @@ class Stack:
     DO NOT CHANGE THIS CLASS IN ANY WAY
     YOU ARE ALLOWED TO CREATE AND USE OBJECTS OF THIS CLASS IN YOUR SOLUTION
     """
+
     def __init__(self):
         """ Initialize empty stack based on Python list """
         self._data = []
@@ -46,6 +47,7 @@ class Queue:
     DO NOT CHANGE THIS CLASS IN ANY WAY
     YOU ARE ALLOWED TO CREATE AND USE OBJECTS OF THIS CLASS IN YOUR SOLUTION
     """
+
     def __init__(self):
         """ Initialize empty queue based on Python list """
         self._data = []
@@ -73,14 +75,15 @@ class TreeNode:
     Binary Search Tree Node class
     DO NOT CHANGE THIS CLASS IN ANY WAY
     """
+
     def __init__(self, value: object) -> None:
         """
         Init new Binary Search Tree
         DO NOT CHANGE THIS METHOD IN ANY WAY
         """
-        self.value = value          # to store node's data
-        self.left = None            # pointer to root of left subtree
-        self.right = None           # pointer to root of right subtree
+        self.value = value  # to store node's data
+        self.left = None  # pointer to root of left subtree
+        self.right = None  # pointer to root of right subtree
 
     def __str__(self):
         return str(self.value)
@@ -151,7 +154,6 @@ class BST:
                     P.left = TreeNode(value)
                 else:
                     P.right = TreeNode(value)
-
 
     def contains(self, value: object) -> bool:
         """
@@ -244,33 +246,90 @@ class BST:
                     PN.right = S
                 return True
 
-
-
-
-
     def pre_order_traversal(self) -> Queue:
         """
         TODO: Write this implementation
         """
-        return Queue()
+
+        N = self.root
+        io = Queue()
+
+        return self.preOrder(N, io)
+
+    def preOrder(self, N, queue):
+        """
+        TODO: Write this implementation
+        """
+        if N is not None:
+            queue.enqueue(N.value)
+            self.preOrder(N.left, queue)
+            self.preOrder(N.right, queue)
+        return queue
 
     def in_order_traversal(self) -> Queue:
         """
         TODO: Write this implementation
         """
-        return Queue()
+
+        N = self.root
+        io = Queue()
+
+        return self.inOrder(N, io)
+
+    def inOrder(self, N, queue):
+        """
+        TODO: Write this implementation
+        """
+        if N is not None:
+            self.inOrder(N.left, queue)
+            queue.enqueue(N.value)
+            self.inOrder(N.right, queue)
+        return queue
 
     def post_order_traversal(self) -> Queue:
         """
         TODO: Write this implementation
         """
-        return Queue()
+        N = self.root
+        io = Queue()
+
+        return self.postOrder(N, io)
+
+    def postOrder(self, N, queue):
+        """
+        TODO: Write this implementation
+        """
+        if N is not None:
+            self.postOrder(N.left, queue)
+            self.postOrder(N.right, queue)
+            queue.enqueue(N.value)
+        return queue
 
     def by_level_traversal(self) -> Queue:
         """
         TODO: Write this implementation
         """
-        return Queue()
+        sort = Queue()
+        q = Queue()
+        return self.traverse_level(sort, q)
+
+    def traverse_level(self, queue, q):
+        """
+        TODO: Write this implementation
+        """
+        sort = queue
+        q = q
+
+        q.enqueue(self.root)
+        while not q.is_empty():
+            N = q.dequeue()
+            if N is not None:
+                sort.enqueue(N.value)
+                if N.left is not None:
+                    q.enqueue(N.left)
+                if N.right is not None:
+                    q.enqueue(N.right)
+        return sort
 
     def is_full(self) -> bool:
         """
@@ -294,13 +353,44 @@ class BST:
         """
         TODO: Write this implementation
         """
-        return 0
+
+        size = 0
+        N = self.root
+
+        return self.size_helper(N)
+
+    def size_helper(self, node):
+        """
+        TODO: Write this implementation
+        """
+        if node is None:
+            return 0
+        else:
+            return self.size_helper(node.left) + 1 + self.size_helper(node.right)
 
     def height(self) -> int:
         """
         TODO: Write this implementation
         """
-        return -1
+        return self.height_helper(self.root)
+
+    def height_helper(self, N):
+        """
+        TODO: Write this implementation
+        """
+        if N is None:
+            return -1
+
+        else:
+            # Compute the depth of each subtree
+            l_height = self.height_helper(N.left)
+            r_height = self.height_helper(N.right)
+
+            # Use the larger one
+            if l_height > r_height:
+                return l_height + 1
+            else:
+                return r_height + 1
 
     def count_leaves(self) -> int:
         """
@@ -323,7 +413,7 @@ class BST:
         l_r = None
         while N is not None:
             if N.value == value:
-                return N,PN,l_r
+                return N, PN, l_r
             elif N.value > value:
                 PN = N
                 N = N.left
@@ -333,9 +423,9 @@ class BST:
                 N = N.right
                 l_r = "r"
         if N is None:
-            return None,None,None
+            return None, None, None
         else:
-            return N,PN,l_r
+            return N, PN, l_r
 
     def in_order_sucessor(self, N) -> object:
         """
@@ -349,7 +439,6 @@ class BST:
                 PS = N
                 N = N.left
             return N, PS
-
 
 
 # BASIC TESTING - PDF EXAMPLES
@@ -452,34 +541,34 @@ if __name__ == '__main__':
     # print(tree)
 
     """ remove_first() example 3 """
-    print("\nPDF - method remove_first() example 3")
-    print("-------------------------------------")
-    tree = BST([10, 10, -1, 5, -1])
-    tree = BST([10, 10, -1, 5, -1])
-    print(tree.remove_first(), tree)
-    print(tree.remove_first(), tree)
-    print(tree.remove_first(), tree)
-    print(tree.remove_first(), tree)
-    print(tree.remove_first(), tree)
-    print(tree.remove_first(), tree)
+    # print("\nPDF - method remove_first() example 3")
+    # print("-------------------------------------")
+    # tree = BST([10, 10, -1, 5, -1])
+    # tree = BST([10, 10, -1, 5, -1])
+    # print(tree.remove_first(), tree)
+    # print(tree.remove_first(), tree)
+    # print(tree.remove_first(), tree)
+    # print(tree.remove_first(), tree)
+    # print(tree.remove_first(), tree)
+    # print(tree.remove_first(), tree)
 
     """ Traversal methods example 1 """
-    print("\nPDF - traversal methods example 1")
-    print("---------------------------------")
-    tree = BST([10, 20, 5, 15, 17, 7, 12])
-    print(tree.pre_order_traversal())
-    print(tree.in_order_traversal())
-    print(tree.post_order_traversal())
-    print(tree.by_level_traversal())
+    # print("\nPDF - traversal methods example 1")
+    # print("---------------------------------")
+    # tree = BST([10, 20, 5, 15, 17, 7, 12])
+    # print(tree.pre_order_traversal())
+    # print(tree.in_order_traversal())
+    # print(tree.post_order_traversal())
+    # print(tree.by_level_traversal())
 
     """ Traversal methods example 2 """
-    print("\nPDF - traversal methods example 2")
-    print("---------------------------------")
-    tree = BST([10, 10, -1, 5, -1])
-    print(tree.pre_order_traversal())
-    print(tree.in_order_traversal())
-    print(tree.post_order_traversal())
-    print(tree.by_level_traversal())
+    # print("\nPDF - traversal methods example 2")
+    # print("---------------------------------")
+    # tree = BST([10, 10, -1, 5, -1])
+    # print(tree.pre_order_traversal())
+    # print(tree.in_order_traversal())
+    # print(tree.post_order_traversal())
+    # print(tree.by_level_traversal())
 
     """ Comprehensive example 1 """
     print("\nComprehensive example 1")
@@ -532,4 +621,3 @@ if __name__ == '__main__':
     print('', tree.pre_order_traversal(), tree.in_order_traversal(),
           tree.post_order_traversal(), tree.by_level_traversal(),
           sep='\n')
-
