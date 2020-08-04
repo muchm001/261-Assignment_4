@@ -1,7 +1,7 @@
 # Course: CS261 - Data Structures
 # Student Name: Michael Uchmanowicz
 # Assignment: A4 P1
-# Description: a BST class
+# Description:
 
 
 class Stack:
@@ -157,8 +157,7 @@ class BST:
 
     def contains(self, value: object) -> bool:
         """
-        Returns True if the value parameter is in the BinaryTree or False if it is not in
-        the tree. If the tree is empty, the method should return False
+        TODO: Write this implementation
         """
         if self.root is None:
             return False
@@ -182,8 +181,7 @@ class BST:
 
     def get_first(self) -> object:
         """
-        Returns the value stored at the root node. If the BinaryTree is empty, this
-        method returns None.
+        TODO: Write this implementation
         """
         if self.root is None:
             return None
@@ -192,8 +190,7 @@ class BST:
 
     def remove_first(self) -> bool:
         """
-        Removes the root node in the BinaryTree. Returns False if
-        the tree is empty and there is no root node to remove and True if the root is removed
+        TODO: Write this implementation
         """
         if self.root is None:
             return False
@@ -215,64 +212,59 @@ class BST:
                     self.root = S
                     return True
 
-    def remove(self, value) -> bool:
-        """
-        Remove the first instance of the object in the BinaryTree. The method
-        must return True if the value is removed from the BinaryTree and otherwise return False
-        """
-        N, PN, l_r = self.find(value)
-        if N is None:
-            pass
-        else:
-            if N.left is None and N.right is None:
-                if N == self.root:
-                    self.root = None
-                    return True
-                if PN is not None:
-                    if PN.left == N:
-                        PN.left = None
-                        return True
-                    else:
-                        PN.right = None
-                        return True
-            elif N.left is None:
-                if PN is None:
-                    self.root = N.right
-                    return True
-                else:
-                    PN.right = N.left
-                    return True
-            elif N.right is None:
-                if PN is None:
-                    self.root = N.left
-                    return True
-                else:
-                    PN.right = N.left
-                    return True
-            else:
-                S, PS = self.in_order_sucessor(N)
-                S.left = N.left
-                if S is not N.right:
-                    PS.left = S.right
-                    S.right = N.right
-                    if N == self.root:
-                        self.root = S
-                    return True
-                if N == self.root:
-                    self.root = S
-                    return True
-                if l_r == "l":
-                    PN.left = S
-                    return True
-                else:
-                    PN.right = S
-                    return True
-
-        return False
+    # def remove(self, value) -> bool:
+    #     """
+    #         TODO: Write this implementation
+    #         """
+    #     N, PN, l_r = self.find(value)
+    #     if N is None:
+    #         return False
+    #     else:
+    #         if N.left is None and N.right is None:
+    #             if N == self.root:
+    #                 self.root = None
+    #                 return True
+    #             if PN is not None:
+    #                 if PN.left == N:
+    #                     PN.left = None
+    #                     return True
+    #                 else:
+    #                     PN.right = None
+    #                     return True
+    #         elif N.left is None:
+    #             if PN is None:
+    #                 self.root == N.right
+    #                 return True
+    #             else:
+    #                 PN.right = N.left
+    #                 return True
+    #         elif N.right is None:
+    #             if PN is None:
+    #                 self.root == N.left
+    #                 return True
+    #             else:
+    #                 PN.left = N.right
+    #                 return True
+    #         else:
+    #             S, PS = self.in_order_sucessor(N)
+    #             S.left = N.left
+    #             if S is not N.right:
+    #                 PS.left = S.right
+    #                 S.right = N.right
+    #                 return True
+    #             if N == self.root:
+    #                 self.root == S
+    #                 return True
+    #             if l_r == "l":
+    #                 PN.left = S
+    #                 return True
+    #             else:
+    #                 PN.right = S
+    #                 return True
 
     def pre_order_traversal(self) -> Queue:
         """
-        Performs pre-order transverse
+        TODO: Write this implementation
         """
 
         N = self.root
@@ -282,7 +274,7 @@ class BST:
 
     def preOrder(self, N, queue):
         """
-        Helper function to perform pre-order traversal
+        TODO: Write this implementation
         """
         if N is not None:
             queue.enqueue(N.value)
@@ -292,7 +284,7 @@ class BST:
 
     def in_order_traversal(self) -> Queue:
         """
-        Performs in-order transverse
+        TODO: Write this implementation
         """
 
         N = self.root
@@ -302,7 +294,7 @@ class BST:
 
     def inOrder(self, N, queue):
         """
-        Helper function to perform in-order traversal
+        TODO: Write this implementation
         """
         if N is not None:
             self.inOrder(N.left, queue)
@@ -312,7 +304,7 @@ class BST:
 
     def post_order_traversal(self) -> Queue:
         """
-        Performs post-order transverse
+        TODO: Write this implementation
         """
         N = self.root
         io = Queue()
@@ -321,7 +313,7 @@ class BST:
 
     def postOrder(self, N, queue):
         """
-        Helper function to perform in-order traversal
+        TODO: Write this implementation
         """
         if N is not None:
             self.postOrder(N.left, queue)
@@ -331,7 +323,7 @@ class BST:
 
     def by_level_traversal(self) -> Queue:
         """
-        Performs By level transverse
+        TODO: Write this implementation
         """
         sort = Queue()
         q = Queue()
@@ -339,7 +331,7 @@ class BST:
 
     def traverse_level(self, queue, q):
         """
-        By level traversal helper
+        TODO: Write this implementation
         """
         sort = queue
         q = q
@@ -357,29 +349,33 @@ class BST:
 
     def is_full(self) -> bool:
         """
-        Returns True if the current tree is a ‘full binary tree’
+        TODO: Write this implementation
         """
         return self.is_full_helper(self.root)
 
     def is_full_helper(self, N):
         """
-        Helper function for is full function
+        TODO: Write this implementation
         """
-
+        # If empty tree
         if N is None:
             return True
 
+        # If leaf node
         if N.left is None and N.right is None:
             return True
 
+        # If both left and right subtress are not None and
+        # left and right subtress are full
         if N.left is not None and N.right is not None:
             return self.is_full_helper(N.left) and self.is_full_helper(N.right)
 
+            # We reach here when none of the above if condiitions work
         return False
 
     def is_complete(self) -> bool:
         """
-        returns True if the current tree is a ‘complete binary tree’
+        TODO: Write this implementation
         """
         size = self.size()
         index = 0
@@ -387,54 +383,63 @@ class BST:
 
     def is_complete_helper(self, N, index, size):
         """
-        Helper function for is complete function
+        TODO: Write this implementation
         """
-
+        # An empty is complete
         if N is None:
             return True
 
+        # If index assigned to current nodes is more than
+        # number of nodes in tree, then tree is not complete
         if index >= size:
             return False
 
+        # Recur for left and right subtress
         return (self.is_complete_helper(N.left, 2 * index + 1, size)
                 and self.is_complete_helper(N.right, 2 * index + 2, size)
                 )
 
     def is_perfect(self) -> bool:
         """
-        Returns True if the current tree is a ‘perfect binary tree’
+        TODO: Write this implementation
         """
         height = self.height() + 1
         return self.is_perfect_helper(self.root, height)
 
     def is_perfect_helper(self, N, height, level=0):
         """
-        Helper function for is perfect function
+        TODO: Write this implementation
         """
 
         # An empty tree is perfect
         if N is None:
             return True
 
+        # If leaf node, then its depth must
+        # be same as depth of all other leaves.
         if N.left is None and N.right is None:
             return height == level + 1
 
+            # If internal node and one child is empty
         if N.left is None or N.right is None:
             return False
 
+        # Left and right subtrees must be perfect.
         return self.is_perfect_helper(N.left, height, level + 1) and self.is_perfect_helper(N.right, height, level + 1)
 
     def size(self) -> int:
         """
-        Returns the total number of nodes in the tree.
+        TODO: Write this implementation
         """
+
+        size = 0
         N = self.root
 
         return self.size_helper(N)
 
     def size_helper(self, node):
         """
-        Helper function for size function
+        TODO: Write this implementation
         """
         if node is None:
             return 0
@@ -443,21 +448,23 @@ class BST:
 
     def height(self) -> int:
         """
-        Returns the height of the binary tree. Empty tree has a height of -1.
+        TODO: Write this implementation
         """
         return self.height_helper(self.root)
 
     def height_helper(self, N):
         """
-        Helper function for the height tree
+        TODO: Write this implementation
         """
         if N is None:
             return -1
 
         else:
+            # Compute the depth of each subtree
             l_height = self.height_helper(N.left)
             r_height = self.height_helper(N.right)
 
+            # Use the larger one
             if l_height > r_height:
                 return l_height + 1
             else:
@@ -465,13 +472,13 @@ class BST:
 
     def count_leaves(self) -> int:
         """
-        Returns the number of nodes in the tree that have no children
+        TODO: Write this implementation
         """
         return self.count_leaves_helper(self.root)
 
     def count_leaves_helper(self, N):
         """
-        Helper function for count leaves
+        TODO: Write this implementation
         """
         if N is None:
             return 0
@@ -482,7 +489,7 @@ class BST:
 
     def count_unique(self) -> int:
         """
-        Returns the count of unique values stored in the tree
+        TODO: Write this implementation
         """
         values = self.in_order_traversal()
         total = 0
@@ -525,7 +532,7 @@ class BST:
         Find a nodes in order successor and return that value
         """
         if N.right.left is None:
-            return N.right, N
+            return N.right, None
         else:
             N = N.right
             while N.left is not None:
@@ -537,61 +544,60 @@ class BST:
 # BASIC TESTING - PDF EXAMPLES
 
 if __name__ == '__main__':
-    pass
-    # """ add() example #1 """
-    # # print("\nPDF - method add() example 1")
-    # # print("----------------------------")
-    # # tree = BST()
-    # # print(tree)
-    # # tree.add(10)
-    # # tree.add(15)
-    # # tree.add(5)
-    # # print(tree)
-    # # tree.add(15)
-    # # tree.add(15)
-    # # print(tree)
-    # # tree.add(5)
-    # # print(tree)
-    #
-    # """ add() example 2 """
-    # # print("\nPDF - method add() example 2")
-    # # print("----------------------------")
-    # # tree = BST()
-    # # tree.add(10)
-    # # tree.add(10)
-    # # print(tree)
-    # # tree.add(-1)
-    # # print(tree)
-    # # tree.add(5)
-    # # print(tree)
-    # # tree.add(-1)
-    # # print(tree)
-    #
-    # """ contains() example 1 """
-    # # print("\nPDF - method contains() example 1")
-    # # print("---------------------------------")
-    # # tree = BST([10, 5, 15])
-    # # print(tree.contains(15))
-    # # print(tree.contains(-10))
-    # # print(tree.contains(15))
-    #
-    # """ contains() example 2 """
-    # # print("\nPDF - method contains() example 2")
-    # # print("---------------------------------")
-    # # tree = BST()
-    # # print(tree.contains(0))
-    #
-    # """ get_first() example 1 """
-    # # print("\nPDF - method get_first() example 1")
-    # # print("----------------------------------")
-    # # tree = BST()
-    # # print(tree.get_first())
-    # # tree.add(10)
-    # # tree.add(15)
-    # # tree.add(5)
-    # # print(tree.get_first())
-    # # print(tree)
-    #
+    """ add() example #1 """
+    # print("\nPDF - method add() example 1")
+    # print("----------------------------")
+    # tree = BST()
+    # print(tree)
+    # tree.add(10)
+    # tree.add(15)
+    # tree.add(5)
+    # print(tree)
+    # tree.add(15)
+    # tree.add(15)
+    # print(tree)
+    # tree.add(5)
+    # print(tree)
+
+    """ add() example 2 """
+    # print("\nPDF - method add() example 2")
+    # print("----------------------------")
+    # tree = BST()
+    # tree.add(10)
+    # tree.add(10)
+    # print(tree)
+    # tree.add(-1)
+    # print(tree)
+    # tree.add(5)
+    # print(tree)
+    # tree.add(-1)
+    # print(tree)
+
+    """ contains() example 1 """
+    # print("\nPDF - method contains() example 1")
+    # print("---------------------------------")
+    # tree = BST([10, 5, 15])
+    # print(tree.contains(15))
+    # print(tree.contains(-10))
+    # print(tree.contains(15))
+
+    """ contains() example 2 """
+    # print("\nPDF - method contains() example 2")
+    # print("---------------------------------")
+    # tree = BST()
+    # print(tree.contains(0))
+
+    """ get_first() example 1 """
+    # print("\nPDF - method get_first() example 1")
+    # print("----------------------------------")
+    # tree = BST()
+    # print(tree.get_first())
+    # tree.add(10)
+    # tree.add(15)
+    # tree.add(5)
+    # print(tree.get_first())
+    # print(tree)
+
     # # """ remove() example 1 """
     # print("\nPDF - method remove() example 1")
     # print("-------------------------------")
@@ -599,15 +605,15 @@ if __name__ == '__main__':
     # print(tree.remove(7))
     # print(tree.remove(15))
     # print(tree.remove(15))
-    # # #
-    # # # """ remove() example 2 """
+    # #
+    # # """ remove() example 2 """
     # print("\nPDF - method remove() example 2")
     # print("-------------------------------")
     # tree = BST([10, 20, 5, 15, 17, 7, 12])
     # print(tree.remove(20))
     # print(tree)
-    # # #
-    # # # """ remove() example 3 """
+    # #
+    # # """ remove() example 3 """
     # print("\nPDF - method remove() example 3")
     # print("-------------------------------")
     # tree = BST([10, 5, 20, 18, 12, 7, 27, 22, 18, 24, 22, 30])
@@ -619,128 +625,103 @@ if __name__ == '__main__':
     # print(tree.in_order_traversal())
     # print(tree.post_order_traversal())
     # print(tree.by_level_traversal())
-    # #
-    # # """ remove_first() example 1 """
-    # # # print("\nPDF - method remove_first() example 1")
-    # # # print("-------------------------------------")
-    # # # tree = BST([10, 15, 5])
-    # # # print(tree.remove_first())
-    # # # print(tree)
-    # #
-    # # """ remove_first() example 2 """
-    # # # print("\nPDF - method remove_first() example 2")
-    # # # print("-------------------------------------")
-    # # # tree = BST([10, 20, 5, 15, 17, 7])
-    # # # print(tree.remove_first())
-    # # # print(tree)
-    # #
-    # # """ remove_first() example 3 """
-    # # # print("\nPDF - method remove_first() example 3")
-    # # # print("-------------------------------------")
-    # # # tree = BST([10, 10, -1, 5, -1])
-    # # # tree = BST([10, 10, -1, 5, -1])
-    # # # print(tree.remove_first(), tree)
-    # # # print(tree.remove_first(), tree)
-    # # # print(tree.remove_first(), tree)
-    # # # print(tree.remove_first(), tree)
-    # # # print(tree.remove_first(), tree)
-    # # # print(tree.remove_first(), tree)
-    #
-    # """ remove_first() example 1 """
+
+    """ remove_first() example 1 """
     # print("\nPDF - method remove_first() example 1")
     # print("-------------------------------------")
     # tree = BST([10, 15, 5])
-    # print(tree.remove(10))
+    # print(tree.remove_first())
     # print(tree)
-    #
-    # # """ remove_first() example 2 """
+
+    """ remove_first() example 2 """
     # print("\nPDF - method remove_first() example 2")
     # print("-------------------------------------")
     # tree = BST([10, 20, 5, 15, 17, 7])
-    # print(tree.remove(10))
+    # print(tree.remove_first())
     # print(tree)
-    # #
-    # # """ remove_first() example 3 """
+
+    """ remove_first() example 3 """
     # print("\nPDF - method remove_first() example 3")
     # print("-------------------------------------")
     # tree = BST([10, 10, -1, 5, -1])
-    # print(tree.remove(10), tree)
-    # print(tree.remove(10), tree)
-    # print(tree.remove(-1), tree)
-    # print(tree.remove(-1), tree)
-    # print(tree.remove(5), tree)
+    # tree = BST([10, 10, -1, 5, -1])
+    # print(tree.remove_first(), tree)
+    # print(tree.remove_first(), tree)
+    # print(tree.remove_first(), tree)
+    # print(tree.remove_first(), tree)
+    # print(tree.remove_first(), tree)
+    # print(tree.remove_first(), tree)
 
+    """ Traversal methods example 1 """
+    # print("\nPDF - traversal methods example 1")
+    # print("---------------------------------")
+    # tree = BST([10, 20, 5, 15, 17, 7, 12])
+    # print(tree.pre_order_traversal())
+    # print(tree.in_order_traversal())
+    # print(tree.post_order_traversal())
+    # print(tree.by_level_traversal())
+
+    """ Traversal methods example 2 """
+    # print("\nPDF - traversal methods example 2")
+    # print("---------------------------------")
+    # tree = BST([10, 10, -1, 5, -1])
+    # print(tree.pre_order_traversal())
+    # print(tree.in_order_traversal())
+    # print(tree.post_order_traversal())
+    # print(tree.by_level_traversal())
+
+    """ Comprehensive example 1 """
+    # print("\nComprehensive example 1")
+    # print("-----------------------")
+    # tree = BST()
+    # header = 'Value   Size  Height   Leaves   Unique   '
+    # header += 'Complete?  Full?    Perfect?'
+    # print(header)
+    # print('-' * len(header))
+    # print(f'  N/A {tree.size():6} {tree.height():7} ',
+    #       f'{tree.count_leaves():7} {tree.count_unique():8}  ',
+    #       f'{str(tree.is_complete()):10}',
+    #       f'{str(tree.is_full()):7} ',
+    #       f'{str(tree.is_perfect())}')
+
+    # for value in [10, 5, 3, 15, 12, 8, 20, 1, 4, 9, 7]:
+    #     tree.add(value)
+    #     print(f'{value:5} {tree.size():6} {tree.height():7} ',
+    #           f'{tree.count_leaves():7} {tree.count_unique():8}  ',
+    #           f'{str(tree.is_complete()):10}',
+    #           f'{str(tree.is_full()):7} ',
+    #           f'{str(tree.is_perfect())}')
+    # print()
+    # print(tree.pre_order_traversal())
+    # print(tree.in_order_traversal())
+    # print(tree.post_order_traversal())
+    # print(tree.by_level_traversal())
+
+    """ Comprehensive example 2 """
+    # print("\nComprehensive example 2")
+    # print("-----------------------")
+    # tree = BST()
+    # header = 'Value   Size  Height   Leaves   Unique   '
+    # header += 'Complete?  Full?    Perfect?'
+    # print(header)
+    # print('-' * len(header))
+    # print(f'N/A   {tree.size():6} {tree.height():7} ',
+    #       f'{tree.count_leaves():7} {tree.count_unique():8}  ',
+    #       f'{str(tree.is_complete()):10}',
+    #       f'{str(tree.is_full()):7} ',
+    #       f'{str(tree.is_perfect())}')
     #
-    # """ Traversal methods example 1 """
-    # # print("\nPDF - traversal methods example 1")
-    # # print("---------------------------------")
-    # # tree = BST([10, 20, 5, 15, 17, 7, 12])
-    # # print(tree.pre_order_traversal())
-    # # print(tree.in_order_traversal())
-    # # print(tree.post_order_traversal())
-    # # print(tree.by_level_traversal())
-    #
-    # """ Traversal methods example 2 """
-    # # print("\nPDF - traversal methods example 2")
-    # # print("---------------------------------")
-    # # tree = BST([10, 10, -1, 5, -1])
-    # # print(tree.pre_order_traversal())
-    # # print(tree.in_order_traversal())
-    # # print(tree.post_order_traversal())
-    # # print(tree.by_level_traversal())
-    #
-    # """ Comprehensive example 1 """
-    # # print("\nComprehensive example 1")
-    # # print("-----------------------")
-    # # tree = BST()
-    # # header = 'Value   Size  Height   Leaves   Unique   '
-    # # header += 'Complete?  Full?    Perfect?'
-    # # print(header)
-    # # print('-' * len(header))
-    # # print(f'  N/A {tree.size():6} {tree.height():7} ',
-    # #       f'{tree.count_leaves():7} {tree.count_unique():8}  ',
-    # #       f'{str(tree.is_complete()):10}',
-    # #       f'{str(tree.is_full()):7} ',
-    # #       f'{str(tree.is_perfect())}')
-    #
-    # # for value in [10, 5, 3, 15, 12, 8, 20, 1, 4, 9, 7]:
-    # #     tree.add(value)
-    # #     print(f'{value:5} {tree.size():6} {tree.height():7} ',
-    # #           f'{tree.count_leaves():7} {tree.count_unique():8}  ',
-    # #           f'{str(tree.is_complete()):10}',
-    # #           f'{str(tree.is_full()):7} ',
-    # #           f'{str(tree.is_perfect())}')
-    # # print()
-    # # print(tree.pre_order_traversal())
-    # # print(tree.in_order_traversal())
-    # # print(tree.post_order_traversal())
-    # # print(tree.by_level_traversal())
-    #
-    # """ Comprehensive example 2 """
-    # # print("\nComprehensive example 2")
-    # # print("-----------------------")
-    # # tree = BST()
-    # # header = 'Value   Size  Height   Leaves   Unique   '
-    # # header += 'Complete?  Full?    Perfect?'
-    # # print(header)
-    # # print('-' * len(header))
-    # # print(f'N/A   {tree.size():6} {tree.height():7} ',
-    # #       f'{tree.count_leaves():7} {tree.count_unique():8}  ',
-    # #       f'{str(tree.is_complete()):10}',
-    # #       f'{str(tree.is_full()):7} ',
-    # #       f'{str(tree.is_perfect())}')
-    # #
-    # # for value in 'DATA STRUCTURES':
-    # #     tree.add(value)
-    # #     print(f'{value:5} {tree.size():6} {tree.height():7} ',
-    # #           f'{tree.count_leaves():7} {tree.count_unique():8}  ',
-    # #           f'{str(tree.is_complete()):10}',
-    # #           f'{str(tree.is_full()):7} ',
-    # #           f'{str(tree.is_perfect())}')
-    # # print('', tree.pre_order_traversal(), tree.in_order_traversal(),
-    # #       tree.post_order_traversal(), tree.by_level_traversal(),
-    # #       sep='\n')
-    #
+    # for value in 'DATA STRUCTURES':
+    #     tree.add(value)
+    #     print(f'{value:5} {tree.size():6} {tree.height():7} ',
+    #           f'{tree.count_leaves():7} {tree.count_unique():8}  ',
+    #           f'{str(tree.is_complete()):10}',
+    #           f'{str(tree.is_full()):7} ',
+    #           f'{str(tree.is_perfect())}')
+    # print('', tree.pre_order_traversal(), tree.in_order_traversal(),
+    #       tree.post_order_traversal(), tree.by_level_traversal(),
+    #       sep='\n')
+
     # print("\n Remove")
     # print("---------------------------------")
     # tree = BST([10])
@@ -778,28 +759,11 @@ if __name__ == '__main__':
     # tree = BST([10, 20])
     # print(tree.remove(10))
     #
-    # tree = BST([10, 5])
+    tree = BST([10, 5])
+    print(tree.remove(5))
     # print(tree.remove(5))
     # print(tree.remove(5))
     # print(tree.remove(5))
-    # print(tree.remove(5))
-    # tree = BST([10,11,12,13,14])
-    # print(tree.remove(14))
-    # print(tree.in_order_traversal())
-    # print("---------------------")
-    # tree = BST([20,10,30,9,11,25,31])
-    # print(tree.remove(30))
-    # print(tree.in_order_traversal())
-    test_values = [20, 40, 10, 30, 34, 14, 24]
-    test = BST()
-    test.add(20)
-    test.add(40)
-    test.add(10)
-    test.add(30)
-    test.add(34)
-    test.add(14)
-    test.add(24)
-    print(test)
-    print(test.contains(40))
-    print(test.remove(40))
-    print(test.contains(40))
+    # tree = BST([10])
+    # print(tree.remove(10))
+
